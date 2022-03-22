@@ -45,8 +45,9 @@ class ListFragment: Fragment() {
     }
 
     private fun setUpObservers() {
-        viewModel.getCharactersLiveData().observe(viewLifecycleOwner, { characters ->
-            updateCharactersList(characters)
+        viewModel.getCharacters()
+        viewModel.charactersLiveData.observe(viewLifecycleOwner, { characters ->
+            updateCharactersList(characters?.results!!)
         })
     }
 

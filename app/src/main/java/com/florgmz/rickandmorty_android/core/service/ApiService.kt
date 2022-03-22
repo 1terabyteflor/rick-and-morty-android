@@ -9,9 +9,11 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("character/")
-    suspend fun getCharactersList(
-        @Query("page") page: String
-    ): Response<CharactersResponse>
+    suspend fun getCharactersList(): Response<CharactersResponse>
+//    @GET("character/")
+//    suspend fun getCharactersList(
+//        @Query("page") page: String
+//    ): Response<CharactersResponse>
 
     @GET("character/{id}")
     suspend fun getCharactersById(

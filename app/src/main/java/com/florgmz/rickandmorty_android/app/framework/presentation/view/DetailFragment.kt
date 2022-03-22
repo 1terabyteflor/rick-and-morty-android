@@ -43,17 +43,17 @@ class DetailFragment: Fragment() {
     }
 
     private fun setUpObserver() {
-        detailViewModel.getCharacterLiveData().observe(viewLifecycleOwner, { character ->
+        detailViewModel.characterDetailLiveData.observe(viewLifecycleOwner, { character ->
             with(binding) {
                 Glide
                     .with(requireActivity())
-                    .load(character.image)
+                    .load(character?.image)
                     .into(image)
 
-                name.text = character.name
-                species.text = character.species
-                gender.text = character.gender
-                status.text = character.status
+                name.text = character?.name
+                species.text = character?.species
+                gender.text = character?.gender
+                status.text = character?.status
             }
         })
 

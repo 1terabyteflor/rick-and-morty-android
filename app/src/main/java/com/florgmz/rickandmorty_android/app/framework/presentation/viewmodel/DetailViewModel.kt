@@ -1,27 +1,20 @@
 package com.florgmz.rickandmorty_android.app.framework.presentation.viewmodel
 
 import androidx.lifecycle.*
+import com.florgmz.rickandmorty_android.app.framework.model.CharactersResponse
 import com.florgmz.rickandmorty_android.app.framework.model.SingleCharacter
 import com.florgmz.rickandmorty_android.core.usecase.GetSingleCharacterUseCase
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val getSingleCharacterUseCase: GetSingleCharacterUseCase): ViewModel() {
-    private val listData: MutableLiveData<SingleCharacter> by lazy {
-        MutableLiveData<SingleCharacter>()
-    }
-
-    private fun setListData(result: SingleCharacter) {
-        listData.postValue(result)
-    }
+    private val _characterDetailLiveData = MutableLiveData<SingleCharacter?>()
+    val characterDetailLiveData: LiveData<SingleCharacter?> = _characterDetailLiveData
 
     fun getCharacter(id: Long) {
         viewModelScope.launch {
-            setListData(getSingleCharacterUseCase.call(id))
+            val response = getSingleCharacterUseCase.call(id)
+            _characterDetailLiveData.postValue(response)
         }
-    }
-
-    fun getCharacterLiveData(): LiveData<SingleCharacter> {
-        return listData
     }
 
     class DetailViewModelFactory(private val getSingleCharacterUseCase: GetSingleCharacterUseCase): ViewModelProvider.Factory {

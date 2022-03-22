@@ -4,6 +4,6 @@ import com.florgmz.rickandmorty_android.app.framework.model.CharactersResponse
 import com.florgmz.rickandmorty_android.app.framework.model.SingleCharacter
 
 interface CharactersRepository {
-    suspend fun getCharactersList(page: String) : CharactersResponse
+    suspend fun getCharactersList() : CharactersResponse
     suspend fun getCharacterById(id: String) : SingleCharacter
 }

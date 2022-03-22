@@ -7,10 +7,10 @@ import com.florgmz.rickandmorty_android.app.framework.model.SingleCharacter
 import com.florgmz.rickandmorty_android.core.service.ApiService
 
 class CharactersRemoteSourceImpl(private val service: ApiService): CharactersRemoteSource {
-    override suspend fun getCharactersList(page: String): MutableLiveData<CharactersResponse> {
+    override suspend fun getCharactersList(): MutableLiveData<CharactersResponse> {
         val responseLiveData = MutableLiveData<CharactersResponse>()
         try {
-            val response = service.getCharactersList(page)
+            val response = service.getCharactersList()
             if(response.isSuccessful) {
                 response.body()?.let { list ->
                     responseLiveData.value = list
