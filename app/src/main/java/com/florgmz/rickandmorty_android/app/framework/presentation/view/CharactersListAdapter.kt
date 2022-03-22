@@ -25,6 +25,7 @@ class CharactersListAdapter(private val charactersList: List<SingleCharacter?>,
         with(holder) {
             character.let {
                 nameCharacter.text = character?.name
+                speciesCharacter.text = character?.species
 
                 Glide
                     .with(itemView)
@@ -39,5 +40,6 @@ class CharactersListAdapter(private val charactersList: List<SingleCharacter?>,
     class CharactersListViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val imageCharacter: ImageView = view.findViewById(R.id.image_character)
         val nameCharacter: TextView = view.findViewById(R.id.name_character)
+        val speciesCharacter: TextView = view.findViewById(R.id.species_character)
     }
 }

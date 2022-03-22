@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">rickandmorty-android</string>
+    <string name="species">Species:</string>
+    <string name="status">Status:</string>
+    <string name="gender">Gender:</string>
+    <string name="origin">Origin:</string>
 </resources>
