@@ -7,10 +7,10 @@ import com.florgmz.rickandmorty_android.app.framework.source.CharactersRemoteSou
 class CharactersRepositoryImpl(private val charactersRemoteSource: CharactersRemoteSource)
     : CharactersRepository {
     override suspend fun getCharactersList(): CharactersResponse {
-        return charactersRemoteSource.getCharactersList().value!!
+        return charactersRemoteSource.getCharactersList().data!!
     }
 
     override suspend fun getCharacterById(id: String): SingleCharacter {
-        return charactersRemoteSource.getCharacterById(id).value!!
+        return charactersRemoteSource.getCharacterById(id).data!!
     }
 }

@@ -6,38 +6,7 @@ import com.florgmz.rickandmorty_android.app.framework.model.CharactersResponse
 import com.florgmz.rickandmorty_android.app.framework.model.SingleCharacter
 import com.florgmz.rickandmorty_android.core.service.ApiService
 
-class CharactersRemoteSourceImpl(private val service: ApiService): CharactersRemoteSource {
-    override suspend fun getCharactersList(): MutableLiveData<CharactersResponse> {
-        val responseLiveData = MutableLiveData<CharactersResponse>()
-        try {
-            val response = service.getCharactersList()
-            if(response.isSuccessful) {
-                response.body()?.let { list ->
-                    responseLiveData.value = list
-                }
-            } else {
-                Log.e("error:", response.errorBody().toString())
-            }
-        } catch (e: Exception) {
-            Log.e("error", e.toString())
-        }
-        return responseLiveData
-    }
-
-    override suspend fun getCharacterById(id: String): MutableLiveData<SingleCharacter> {
-        val responseByIdLiveData = MutableLiveData<SingleCharacter>()
-        try {
-            val response = service.getCharactersById(id)
-            if(response.isSuccessful) {
-                response.body()?.let {
-                    responseByIdLiveData.value = it
-                }
-            } else {
-                Log.e("error:", response.errorBody().toString())
-            }
-        } catch (e: Exception) {
-            Log.e("error", e.toString())
-        }
-        return responseByIdLiveData
-    }
+class CharactersRemoteSourceImpl(private val service: ApiService): BaseDataSource(), CharactersRemoteSource {
+    override suspend fun getCharactersList() = getResult { service.getCharactersList() }
+    override suspend fun getCharacterById(id: String) = getResult { service.getCharactersById(id) }
 }
