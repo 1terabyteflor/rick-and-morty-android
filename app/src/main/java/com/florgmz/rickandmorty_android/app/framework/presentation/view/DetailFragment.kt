@@ -54,6 +54,7 @@ class DetailFragment: Fragment() {
                 species.text = character?.species
                 gender.text = character?.gender
                 status.text = character?.status
+                origin.text = character?.origin?.name
             }
         })
 
